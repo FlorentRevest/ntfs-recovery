@@ -19,7 +19,7 @@ copydir()
         else                                                       # Else (if it's just a file)
             echo "Copy:" $file
             sudo ntfscat -q $1 $2\/$file > $3\/$file               # Copy it
-            if [ $? != 0 ] -o [ ! -e $1 ]; then                    # If it fails and the device is unmounted
+            if [ $? != 0 ] || [ ! -e $1 ]; then                    # If it fails and the device is unmounted
                 echo -e "\033[31mFatal error when copying" $file "wait five second for the remount of the device\033[0m"
                 sleep 5                                            # Wait for the remount
             fi
